@@ -4,7 +4,28 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23d92323'/%3E%3Ctext x='30' y='45' font-family='Arial,Helvetica,sans-serif' font-size='36' font-weight='bold' fill='white' text-anchor='middle'%3E3%E2%80%B2%3C/text%3E%3C/svg%3E">
+<link id="favicon" rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTIiIGZpbGw9IiNkOTIzMjMiLz48dGV4dCB4PSIzMiIgeT0iNDUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjM2IiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjMmIzgyNDI7PC90ZXh0Pjwvc3ZnPgo=">
+<script>
+(function () {
+  // Favicon distance swaps locally by browser language/region only. No tracking, no network lookup.
+  // US region keeps 3' (imperial). Any other region, or any non-English language, gets 1m (metric).
+  try {
+    var locales = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || "en-US"];
+    var useMetric = false;
+    for (var i = 0; i < locales.length; i++) {
+      var parts = String(locales[i]).replace("_", "-").split("-");
+      var lang = (parts[0] || "").toLowerCase();
+      var region = parts.length > 1 ? (parts[parts.length - 1] || "").toUpperCase() : "";
+      if (region) { useMetric = region !== "US"; break; }
+      if (lang && lang !== "en") { useMetric = true; break; }
+    }
+    if (useMetric) {
+      var link = document.getElementById("favicon");
+      if (link) link.setAttribute("href", "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTIiIGZpbGw9IiNkOTIzMjMiLz48dGV4dCB4PSIzMiIgeT0iNDMiIGZvbnQtZmFtaWx5PSJBcmlhbCwgSGVsdmV0aWNhLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjMwIiBmb250LXdlaWdodD0iYm9sZCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjFtPC90ZXh0Pjwvc3ZnPgo=");
+    }
+  } catch (e) { /* keep the default 3' favicon */ }
+})();
+</script>
 <title>LaneSaber</title>
 <meta name="description" content="LaneSaber shows drivers what 3 feet looks like, in real time. Free DIY plans at lanesaber.org.">
 <script type="application/ld+json">
@@ -311,7 +332,6 @@
   <header class="splash">
     <div class="txt"><div class="inner">
       <h1 class="logo-hero"><span class="sr-only">LaneSaber</span><svg class="logo-svg logo-animated-svg logo-playable" viewBox="53 41 478 91" role="button" tabindex="0" aria-label="LaneSaber logo, tap, click, or hover to replay the swing animation" title="Tap, click, or hover to replay" xmlns="http://www.w3.org/2000/svg"><path d="M69 116 L107 116" fill="none" stroke="#888888" stroke-width="6" stroke-linecap="round"/><circle cx="69" cy="116" r="4" fill="#ff0a0a"/><path d="M69 57 L69 116" fill="none" stroke="#ff0a0a" stroke-width="8" stroke-linecap="round"/><g class="logo-arm"><path d="M69 57 L69 116" fill="none" stroke="#ff0a0a" stroke-width="8" stroke-linecap="round"/><circle cx="69" cy="57" r="4" fill="#ff0a0a"/></g><g class="logo-word"><text x="112" y="116" font-size="68" letter-spacing="2" fill="#ffffff">ANE<tspan font-size="86" fill="#ff0a0a">S</tspan>ABER</text></g></svg></h1>
-      <p class="logo-hint" aria-hidden="true">Tap, click, or hover the logo to watch it swing again</p>
       <p class="lede">Show drivers what 3 feet looks like.</p>
       <p class="sub">A bright LED pole that mounts on your rear rack, flips down to mark the passing space drivers owe you, and flips up vertical when you do not need it.</p>
       <p class="scroll-hint">Scroll for the story</p>
@@ -342,6 +362,14 @@
         <h2>Watch LaneSaber in action</h2>
         <p class="vidrow-hint" style="margin-top:20px">Videos side by side, scroll sideways to watch each one</p>
         <div class="vidrow">
+          <figure class="vid">
+            <div class="embed-card"><iframe data-src="https://www.instagram.com/reel/DgK7zRhBxdU/embed/" sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox" referrerpolicy="no-referrer" loading="lazy" scrolling="no" title="LaneSaber Open Build announcement, on Instagram"></iframe></div>
+            <figcaption><strong>Watch:</strong> LaneSaber Open Build announcement. The 3D printed version, no kickstand, no drilling, no bending. <a href="https://www.instagram.com/reel/DgK7zRhBxdU/" target="_blank" rel="noopener">Watch on Instagram</a></figcaption>
+          </figure>
+          <figure class="vid">
+            <div class="embed-card"><iframe data-src="https://www.instagram.com/reel/DgMEMvGykBR/embed/" sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox" referrerpolicy="no-referrer" loading="lazy" scrolling="no" title="Introducing PartySaber, on Instagram"></iframe></div>
+            <figcaption><strong>Watch:</strong> Introducing PartySaber. Increases in visibility and fabulousness. <a href="https://www.instagram.com/reel/DgMEMvGykBR/" target="_blank" rel="noopener">Watch on Instagram</a></figcaption>
+          </figure>
           <figure class="vid">
             <div class="embed-card"><iframe data-src="https://www.instagram.com/reel/DbhFnKkRvJ_/embed/" sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox" referrerpolicy="no-referrer" loading="lazy" scrolling="no" title="LaneSaber in action, on Instagram"></iframe></div>
             <figcaption><strong>Watch:</strong> LaneSaber in action. <a href="https://www.instagram.com/reel/DbhFnKkRvJ_/" target="_blank" rel="noopener">Watch on Instagram</a></figcaption>
@@ -698,6 +726,10 @@
     <h3 style="margin-top:36px">PartySaber in action</h3>
     <p class="vidrow-hint">Videos side by side, scroll sideways</p>
     <div class="vidrow">
+      <figure class="vid">
+        <div class="embed-card"><iframe data-src="https://www.instagram.com/reel/DgMEMvGykBR/embed/" sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox" referrerpolicy="no-referrer" loading="lazy" scrolling="no" title="Introducing PartySaber, on Instagram"></iframe></div>
+        <figcaption><strong>Watch:</strong> Introducing PartySaber. Increases in visibility and fabulousness. <a href="https://www.instagram.com/reel/DgMEMvGykBR/" target="_blank" rel="noopener">Watch on Instagram</a></figcaption>
+      </figure>
       <figure class="vid">
         <div class="embed-card"><iframe data-src="https://www.instagram.com/reel/DbyzrMAypFC/embed/" sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox" referrerpolicy="no-referrer" loading="lazy" scrolling="no" title="A row of PartySabers running through their colors, on Instagram"></iframe></div>
         <figcaption><strong>Watch:</strong> A row of PartySabers running through their colors. <a href="https://www.instagram.com/reel/DbyzrMAypFC/" target="_blank" rel="noopener">Watch on Instagram</a></figcaption>
