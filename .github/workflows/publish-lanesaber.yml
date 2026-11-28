@@ -1,0 +1,17 @@
+name: Publish LaneSaber YouTube migration
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Replace index.html with migration file
+        run: |
+          git mv lanesaber-youtube-migration.html index.html
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Publish updated LaneSaber website: YouTube embeds for Open Build, PartySaber, and How-To Steps 1-5"
+          git push
